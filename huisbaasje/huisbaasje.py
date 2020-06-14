@@ -4,86 +4,118 @@ import async_timeout
 from yarl import URL
 
 from .const import API_HOST, AUTHENTICATION_PATH, SOURCES_PATH, AUTH_TOKEN_HEADER, ACTUALS_PATH
-from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException
+from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, HuisbaasjeUnauthenticatedException
 
 
 class Huisbaasje:
     """Client to connect with Huisbaasje"""
 
-    def __init__(self, request_timeout: int = 10, source_types=None):
+    def __init__(self, username: str, password: str, request_timeout: int = 10, source_types=None):
         if source_types is None:
             source_types = ["electricity", "gas"]
         self.request_timeout = request_timeout
         self.source_types = source_types
 
+        self._username = username
+        self._password = password
         self._user_id = None
         self._auth_token = None
         self._sources = None
 
-    async def authenticate(self, username: str, password: str) -> None:
-        """Log in using username and password"""
-        url = URL.build(scheme="https", host=API_HOST, port=443, path=AUTHENTICATION_PATH)
-        headers = {"Accept": "application/json"}
-        data = {"loginName": username, "password": password}
+    async def authenticate(self) -> None:
+        """Log in using username and password.
 
-        return await self.request("POST", url, headers=headers, data=data, callback=self._handle_authenticate_response)
+        If succesfull, the authentication is saved and is_authenticated() returns true
+        """
+        url = URL.build(scheme="https", host=API_HOST, port=443, path=AUTHENTICATION_PATH)
+        data = {"loginName": self._username, "password": self._password}
+
+        return await self.request("POST", url, data=data, callback=self._handle_authenticate_response)
 
     async def _handle_authenticate_response(self, response):
         json = await response.json()
         self._auth_token = response.headers.get(AUTH_TOKEN_HEADER)
-        self._user_id = json['userId']
+        self._user_id = json["userId"]
 
     async def sources(self):
-        url = URL.build(scheme="https", host=API_HOST, port=443, path=(SOURCES_PATH % self._user_id))
-        headers = {
-            "Accept": "application/json",
-            AUTH_TOKEN_HEADER: self._auth_token
-        }
+        """Request the sources."""
+        if not self.is_authenticated():
+            raise HuisbaasjeUnauthenticatedException("Authentication required")
 
-        return await self.request("GET", url, headers=headers, callback=self._handle_sources_response)
+        url = URL.build(scheme="https", host=API_HOST, port=443, path=(SOURCES_PATH % self._user_id))
+
+        return await self.request("GET", url, callback=self._handle_sources_response)
 
     async def _handle_sources_response(self, response):
         json = await response.json()
         self._sources = dict()
-        for source in json['sources']:
-            self._sources[source['type']] = source['source']
+        for source in json["sources"]:
+            self._sources[source["type"]] = source["source"]
 
     async def actuals(self):
-        source_ids = [source_id for source_id in map(self.get_source_id, self.source_types) if source_id is not None]
+        """Request the actual values of the sources of the types configured in this instance (source_types)."""
+        if not self.is_authenticated():
+            raise HuisbaasjeUnauthenticatedException("Authentication required")
+
+        source_ids = self.get_source_ids()
 
         query = {"sources": ",".join(source_ids)}
         url = URL.build(scheme="https", host=API_HOST, port=443, path=(ACTUALS_PATH % self._user_id), query=query)
-        headers = {
-            "Accept": "application/json",
-            AUTH_TOKEN_HEADER: self._auth_token
-        }
 
-        return await self.request("GET", url, headers=headers, callback=self._handle_actuals_response)
+        return await self.request("GET", url, callback=self._handle_actuals_response)
 
     async def _handle_actuals_response(self, response):
         json = await response.json()
         actuals = dict()
-        for actual in json['actuals']:
-            actuals[actual['type']] = actual
+        for actual in json["actuals"]:
+            actuals[actual["type"]] = actual
 
         return actuals
 
     async def current_measurements(self):
-        actuals = await self.actuals()
-        current_measurements = dict()
+        """Wrapper method which returns the relevant actual values of sources.
 
-        for type, actual in actuals.items():
-            current_measurements[type] = max(actual['measurements'], key=lambda item: item['time'])
+        When required, this method attempts to authenticate."""
+        try:
+            if not self.is_authenticated():
+                await self.authenticate()
 
-        return current_measurements
+            if self._sources is None:
+                await self.sources()
 
-    async def request(self, method: str, url: str, headers: dict = None, data: dict = None, callback=None):
+            actuals = await self.actuals()
+            current_measurements = dict()
+
+            for source_type, actual in actuals.items():
+                current_measurements[source_type] = {
+                    "measurement": max(actual["measurements"], key=lambda item: item["time"]),
+                    "thisDay": actual["thisDay"],
+                    "thisWeek": actual["thisWeek"],
+                    "thisMonth": actual["thisMonth"],
+                    "thisYear": actual["thisYear"],
+                }
+
+            return current_measurements
+        except HuisbaasjeUnauthenticatedException as exception:
+            self.invalidate_authentication()
+            raise exception
+
+    async def request(self, method: str, url: str, data: dict = None, callback=None):
+        headers = {"Accept": "application/json"}
+
+        # Insert authentication
+        if self._auth_token is not None:
+            headers[AUTH_TOKEN_HEADER] = self._auth_token
+
         try:
             with async_timeout.timeout(self.request_timeout):
                 async with aiohttp.ClientSession() as session:
                     async with session.request(method, url, json=data, headers=headers, ssl=True) as response:
                         status = response.status
                         is_json = response.headers.get("Content-Type", "") == "application/json"
+
+                        if status == 401:
+                            raise HuisbaasjeUnauthenticatedException(await response.text())
 
                         if not is_json or (status // 100) in [4, 5]:
                             raise HuisbaasjeException(response.status, await response.text())
@@ -96,5 +128,21 @@ class Huisbaasje:
         except aiohttp.ClientError as exception:
             raise HuisbaasjeConnectionException("Error occurred while communicating with Huisbaasje") from exception
 
+    def is_authenticated(self):
+        """Returns whether this instance is authenticated
+
+        Note: despite this method returning true, requests could still fail to an authentication error."""
+        return self._user_id is not None and self._auth_token is not None
+
+    def invalidate_authentication(self):
+        """Invalidate the current authentication tokens."""
+        self._user_id = None
+        self._auth_token = None
+
+    def get_source_ids(self):
+        """Gets the ids of the sources which belong to self.source_types, if present."""
+        return [source_id for source_id in map(self.get_source_id, self.source_types) if source_id is not None]
+
     def get_source_id(self, source_type):
+        """Gets the id of the source which belongs to the given source type, if present."""
         return self._sources[source_type] if source_type in self._sources else None

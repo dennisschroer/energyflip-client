@@ -13,16 +13,3 @@ ACTUALS_PATH = "/user/v2/users/%s/actuals"
 
 AUTH_TOKEN_HEADER = "Auth-Token"
 """Header which contains (in response) or should contain (in request) the authentication token"""
-
-SOURCE_TYPES = {
-    "electricityIn": "electricityIn",
-    "electricityInLow": "electricityInLow",
-    "electricityOut": "electricityOut",
-    "electricityOutLow": "electricityOutLow",
-    "electricity": "electricity",
-    "electricityExpected": "electricityExpected",
-    "electricityGoal": "electricityGoal",
-    "gas": "gas",
-    "gasExpected": "gasExpected",
-    "gasGoal": "gasGoal"
-}

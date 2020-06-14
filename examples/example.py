@@ -4,9 +4,9 @@ from huisbaasje.huisbaasje import Huisbaasje
 
 
 async def main(username: str, password: str):
-    huisbaasje = Huisbaasje()
+    huisbaasje = Huisbaasje(username, password)
 
-    await huisbaasje.authenticate(username, password)
+    await huisbaasje.authenticate()
     print("User id: %s" % huisbaasje._user_id)
     print("Auth token: %s" % huisbaasje._auth_token)
 
@@ -18,6 +18,10 @@ async def main(username: str, password: str):
 
     current_measurements = await huisbaasje.current_measurements()
     print("Current measurements: %s" % current_measurements)
+
+    huisbaasje.invalidate_authentication()
+    current_measurements = await huisbaasje.current_measurements()
+    print("Current measurements after reauthentication: %s" % current_measurements)
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
