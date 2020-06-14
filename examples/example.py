@@ -5,8 +5,12 @@ from huisbaasje.huisbaasje import Huisbaasje
 
 async def authenticate(username: str, password: str):
     huisbaasje = Huisbaasje()
+
     user_id = await huisbaasje.authenticate(username, password)
-    print(user_id)
+    print("User id: %s" % huisbaasje.user_id)
+    print("Auth token: %s" % huisbaasje.auth_token)
+
+    await huisbaasje.sources()
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
