@@ -8,6 +8,9 @@ AUTHENTICATION_PATH = "/user/v2/authentication"
 SOURCES_PATH = "/user/v2/users/%s/sources"
 """Path to request sources. Should be formatted with user id."""
 
+ACTUALS_PATH = "/user/v2/users/%s/actuals"
+"""Path to request actual values. Should be formatted with user id."""
+
 AUTH_TOKEN_HEADER = "Auth-Token"
 """Header which contains (in response) or should contain (in request) the authentication token"""
 

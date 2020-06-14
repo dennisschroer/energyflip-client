@@ -11,8 +11,10 @@ async def authenticate(username: str, password: str):
     print("Auth token: %s" % huisbaasje._auth_token)
 
     await huisbaasje.sources()
-
     print("Sources: %s" % huisbaasje._sources)
+
+    actuals = await huisbaasje.actuals()
+    print("Actuals: %s" % actuals)
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
