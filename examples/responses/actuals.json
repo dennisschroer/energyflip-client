@@ -1,0 +1,836 @@
+{
+  "actuals": [
+    {
+      "source": "sourceId",
+      "type": "electricityIn",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisWeek": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisMonth": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisYear": {
+        "value": 0.0,
+        "cost": 0.0
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricityInLow",
+      "measurements": [
+        {
+          "time": "2020-06-14T11:03:39.000Z",
+          "rate": 251.66666666666666,
+          "value": 0.0,
+          "costPerHour": 0.050333333333333334,
+          "counterValue": 3.8099999999998806
+        },
+        {
+          "time": "2020-06-14T11:03:49.000Z",
+          "rate": 251.66666666666666,
+          "value": 0.0,
+          "costPerHour": 0.050333333333333334,
+          "counterValue": 3.8099999999998806
+        },
+        {
+          "time": "2020-06-14T11:03:59.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.811666666666547
+        },
+        {
+          "time": "2020-06-14T11:04:09.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.811666666666547
+        },
+        {
+          "time": "2020-06-14T11:04:19.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:29.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:39.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:49.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.81499999999988
+        },
+        {
+          "time": "2020-06-14T11:04:59.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.81499999999988
+        },
+        {
+          "time": "2020-06-14T11:05:09.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8166666666665465
+        },
+        {
+          "time": "2020-06-14T11:05:19.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8166666666665465
+        },
+        {
+          "time": "2020-06-14T11:05:29.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:05:40.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:05:50.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:06:00.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.8199999999998795
+        },
+        {
+          "time": "2020-06-14T11:06:10.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.8199999999998795
+        },
+        {
+          "time": "2020-06-14T11:06:20.000Z",
+          "rate": 245.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:30.000Z",
+          "rate": 245.0,
+          "value": 0.0,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:40.000Z",
+          "rate": 245.0,
+          "value": 0.0,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:50.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8233333333332125
+        },
+        {
+          "time": "2020-06-14T11:07:00.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8233333333332125
+        },
+        {
+          "time": "2020-06-14T11:07:10.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.824999999999879
+        },
+        {
+          "time": "2020-06-14T11:07:20.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.824999999999879
+        },
+        {
+          "time": "2020-06-14T11:07:30.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:07:40.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:07:50.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:08:00.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.828333333333212
+        },
+        {
+          "time": "2020-06-14T11:08:10.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.828333333333212
+        },
+        {
+          "time": "2020-06-14T11:08:20.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.8299999999998784
+        }
+      ],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 1.7883327720000002,
+        "cost": 0.35766655440000006
+      },
+      "thisWeek": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      },
+      "thisMonth": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      },
+      "thisYear": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricityOut",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisWeek": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisMonth": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisYear": {
+        "value": 0.0,
+        "cost": 0.0
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricityOutLow",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisWeek": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisMonth": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisYear": {
+        "value": 0.0,
+        "cost": 0.0
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricity",
+      "measurements": [
+        {
+          "time": "2020-06-14T11:03:39.000Z",
+          "rate": 251.66666666666666,
+          "value": 0.0,
+          "costPerHour": 0.050333333333333334,
+          "counterValue": 3.8099999999998806
+        },
+        {
+          "time": "2020-06-14T11:03:49.000Z",
+          "rate": 251.66666666666666,
+          "value": 0.0,
+          "costPerHour": 0.050333333333333334,
+          "counterValue": 3.8099999999998806
+        },
+        {
+          "time": "2020-06-14T11:03:59.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.811666666666547
+        },
+        {
+          "time": "2020-06-14T11:04:09.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.811666666666547
+        },
+        {
+          "time": "2020-06-14T11:04:19.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:29.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:39.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8133333333332136
+        },
+        {
+          "time": "2020-06-14T11:04:49.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.81499999999988
+        },
+        {
+          "time": "2020-06-14T11:04:59.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.81499999999988
+        },
+        {
+          "time": "2020-06-14T11:05:09.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8166666666665465
+        },
+        {
+          "time": "2020-06-14T11:05:19.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8166666666665465
+        },
+        {
+          "time": "2020-06-14T11:05:29.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:05:40.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:05:50.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.818333333333213
+        },
+        {
+          "time": "2020-06-14T11:06:00.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.8199999999998795
+        },
+        {
+          "time": "2020-06-14T11:06:10.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.8199999999998795
+        },
+        {
+          "time": "2020-06-14T11:06:20.000Z",
+          "rate": 245.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:30.000Z",
+          "rate": 245.0,
+          "value": 0.0,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:40.000Z",
+          "rate": 245.0,
+          "value": 0.0,
+          "costPerHour": 0.049,
+          "counterValue": 3.821666666666546
+        },
+        {
+          "time": "2020-06-14T11:06:50.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8233333333332125
+        },
+        {
+          "time": "2020-06-14T11:07:00.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8233333333332125
+        },
+        {
+          "time": "2020-06-14T11:07:10.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.824999999999879
+        },
+        {
+          "time": "2020-06-14T11:07:20.000Z",
+          "rate": 248.33333333333331,
+          "value": 0.0,
+          "costPerHour": 0.049666666666666665,
+          "counterValue": 3.824999999999879
+        },
+        {
+          "time": "2020-06-14T11:07:30.000Z",
+          "rate": 250.0,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:07:40.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:07:50.000Z",
+          "rate": 250.0,
+          "value": 0.0,
+          "costPerHour": 0.05,
+          "counterValue": 3.8266666666665454
+        },
+        {
+          "time": "2020-06-14T11:08:00.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.828333333333212
+        },
+        {
+          "time": "2020-06-14T11:08:10.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.828333333333212
+        },
+        {
+          "time": "2020-06-14T11:08:20.000Z",
+          "rate": 246.66666666666669,
+          "value": 0.0016666666666666668,
+          "costPerHour": 0.04933333333333334,
+          "counterValue": 3.8299999999998784
+        }
+      ],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 1.7883327720000002,
+        "cost": 0.35766655440000006
+      },
+      "thisWeek": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      },
+      "thisMonth": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      },
+      "thisYear": {
+        "value": 3.931665413,
+        "cost": 0.7863330826000001
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricityExpected",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 3.4154196553972604,
+        "cost": 0.6830839310794521
+      },
+      "thisWeek": {
+        "value": 52.23733746361643,
+        "cost": 10.447467492723286
+      },
+      "thisMonth": {
+        "value": 109.19624157320548,
+        "cost": 21.839248314641097
+      },
+      "thisYear": {
+        "value": 1346.018159381421,
+        "cost": 269.2036318762842
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "electricityGoal",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 3.073877689857534,
+        "cost": 0.6147755379715069
+      },
+      "thisWeek": {
+        "value": 47.01360371725478,
+        "cost": 9.402720743450956
+      },
+      "thisMonth": {
+        "value": 98.27661741588494,
+        "cost": 19.65532348317699
+      },
+      "thisYear": {
+        "value": 1211.4163434432787,
+        "cost": 242.28326868865577
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "gas",
+      "measurements": [
+        {
+          "time": "2020-06-14T11:03:39.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:03:49.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:03:59.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:09.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:19.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:29.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:39.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:49.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:04:59.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:09.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:19.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:29.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:39.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:49.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:05:59.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:09.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:19.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:29.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:39.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:49.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:06:59.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:07:10.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:07:20.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:07:30.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:07:40.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:07:50.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:08:00.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:08:10.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        },
+        {
+          "time": "2020-06-14T11:08:20.000Z",
+          "rate": 0.0,
+          "value": 0.0,
+          "costPerHour": 0.0,
+          "counterValue": 0.23000000000000007
+        }
+      ],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.0,
+        "cost": 0.0
+      },
+      "thisWeek": {
+        "value": 0.23,
+        "cost": 0.138
+      },
+      "thisMonth": {
+        "value": 0.23,
+        "cost": 0.138
+      },
+      "thisYear": {
+        "value": 0.23,
+        "cost": 0.138
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "gasExpected",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.7270008810013213,
+        "cost": 0.4362005286007928
+      },
+      "thisWeek": {
+        "value": 9.453056076706007,
+        "cost": 5.671833646023604
+      },
+      "thisMonth": {
+        "value": 20.994017109824924,
+        "cost": 12.596410265894955
+      },
+      "thisYear": {
+        "value": 805.7856910063409,
+        "cost": 483.47141460380453
+      }
+    },
+    {
+      "source": "sourceId",
+      "type": "gasGoal",
+      "measurements": [],
+      "baseline": 0.0,
+      "thisDay": {
+        "value": 0.6543007929011893,
+        "cost": 0.39258047574071353
+      },
+      "thisWeek": {
+        "value": 8.507750469035408,
+        "cost": 5.104650281421244
+      },
+      "thisMonth": {
+        "value": 18.894615398842433,
+        "cost": 11.33676923930546
+      },
+      "thisYear": {
+        "value": 725.2071219057069,
+        "cost": 435.12427314342415
+      }
+    }
+  ]
+}
