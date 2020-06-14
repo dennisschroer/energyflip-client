@@ -6,9 +6,9 @@ from huisbaasje.huisbaasje import Huisbaasje
 async def authenticate(username: str, password: str):
     huisbaasje = Huisbaasje()
 
-    user_id = await huisbaasje.authenticate(username, password)
-    print("User id: %s" % huisbaasje.user_id)
-    print("Auth token: %s" % huisbaasje.auth_token)
+    await huisbaasje.authenticate(username, password)
+    print("User id: %s" % huisbaasje._user_id)
+    print("Auth token: %s" % huisbaasje._auth_token)
 
     await huisbaasje.sources()
 
