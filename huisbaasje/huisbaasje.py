@@ -4,14 +4,15 @@ import async_timeout
 from yarl import URL
 
 from .const import API_HOST, AUTHENTICATION_PATH, SOURCES_PATH, AUTH_TOKEN_HEADER
-from .exceptions import HuisbaasjeConnectionException, HuisbaasjeAuthenticationException, HuisbaasjeException
+from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException
 
 
 class Huisbaasje:
     """Client to connect with Huisbaasje"""
 
-    def __init__(self, request_timeout: int = 10):
+    def __init__(self, request_timeout: int = 10, source_types: list = []):
         self.request_timeout = request_timeout
+        self.source_types = source_types
 
         self._user_id = None
         self._auth_token = None
@@ -40,7 +41,13 @@ class Huisbaasje:
         await self.request("GET", url, headers=headers, callback=self._handle_sources_response)
 
     async def _handle_sources_response(self, response):
-        print(await response.text())
+        json = await response.json()
+        self._sources = dict()
+        for source in json['sources']:
+            self._sources[source['type']] = source['source']
+
+    async def actuals(self):
+        pass
 
     async def request(self, method: str, url: str, headers: dict = None, data: dict = None, callback=None):
         try:
