@@ -61,13 +61,21 @@ class Huisbaasje:
         return await self.request("GET", url, headers=headers, callback=self._handle_actuals_response)
 
     async def _handle_actuals_response(self, response):
-        print(await response.text())
         json = await response.json()
         actuals = dict()
         for actual in json['actuals']:
             actuals[actual['type']] = actual
 
         return actuals
+
+    async def current_measurements(self):
+        actuals = await self.actuals()
+        current_measurements = dict()
+
+        for type, actual in actuals.items():
+            current_measurements[type] = max(actual['measurements'], key=lambda item: item['time'])
+
+        return current_measurements
 
     async def request(self, method: str, url: str, headers: dict = None, data: dict = None, callback=None):
         try:
