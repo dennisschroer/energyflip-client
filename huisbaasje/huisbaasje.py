@@ -134,6 +134,10 @@ class Huisbaasje:
         Note: despite this method returning true, requests could still fail to an authentication error."""
         return self._user_id is not None and self._auth_token is not None
 
+    def get_user_id(self):
+        """Returns the unique id of the currently authenticated user"""
+        return self._user_id
+
     def invalidate_authentication(self):
         """Invalidate the current authentication tokens."""
         self._user_id = None
