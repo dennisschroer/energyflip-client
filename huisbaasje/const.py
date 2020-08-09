@@ -5,7 +5,7 @@ API_HOST = "mijnaurum.nl"
 AUTHENTICATION_PATH = "/user/v2/authentication"
 """Path to perform authentication. Result is a user id and an auth token"""
 
-SOURCE_TYPE_ELECTRICITY = "electicity"
+SOURCE_TYPE_ELECTRICITY = "electricity"
 SOURCE_TYPE_ELECTRICITY_IN = "electricityIn"
 SOURCE_TYPE_ELECTRICITY_IN_LOW = "electricityInLow"
 SOURCE_TYPE_ELECTRICITY_OUT = "electricityOut"
