@@ -3,7 +3,7 @@ import aiohttp
 import async_timeout
 from yarl import URL
 
-from .const import API_HOST, AUTHENTICATION_PATH, SOURCES_PATH, AUTH_TOKEN_HEADER, ACTUALS_PATH
+from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, SOURCES_PATH, AUTH_TOKEN_HEADER, ACTUALS_PATH
 from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, HuisbaasjeUnauthenticatedException
 
 
@@ -12,7 +12,7 @@ class Huisbaasje:
 
     def __init__(self, username: str, password: str, request_timeout: int = 10, source_types=None):
         if source_types is None:
-            source_types = ["electricity", "gas"]
+            source_types = DEFAULT_SOURCE_TYPES
         self.request_timeout = request_timeout
         self.source_types = source_types
 
