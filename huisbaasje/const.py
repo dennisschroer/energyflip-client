@@ -13,7 +13,7 @@ SOURCE_TYPE_ELECTRICITY_OUT_LOW = "electricityOutLow"
 SOURCE_TYPE_ELECTRICITY_EXPECTED = "electricityExpected"
 SOURCE_TYPE_ELECTRICITY_GOAL = "electricityGoal"
 SOURCE_TYPE_GAS = "gas"
-SOURCE_TYPE_GAS_EXPECTEC = "gasExpected"
+SOURCE_TYPE_GAS_EXPECTED = "gasExpected"
 SOURCE_TYPE_GAS_GOAL = "gasGoal"
 
 DEFAULT_SOURCE_TYPES = [SOURCE_TYPE_ELECTRICITY,
@@ -24,7 +24,7 @@ DEFAULT_SOURCE_TYPES = [SOURCE_TYPE_ELECTRICITY,
                         SOURCE_TYPE_ELECTRICITY_EXPECTED,
                         SOURCE_TYPE_ELECTRICITY_GOAL,
                         SOURCE_TYPE_GAS,
-                        SOURCE_TYPE_GAS_EXPECTEC,
+                        SOURCE_TYPE_GAS_EXPECTED,
                         SOURCE_TYPE_GAS_GOAL]
 """Default source types to fetch if none are specified."""
 
