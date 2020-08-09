@@ -1,0 +1,210 @@
+{
+  "electricity": {
+    "measurement": {
+      "time": "2020-08-09T11:27:13.000Z",
+      "rate": 156.66666666666669,
+      "value": 0.0,
+      "costPerHour": 0.03133333333333334,
+      "counterValue": 95.20666666660068
+    },
+    "thisDay": {
+      "value": 1.8366660140000002,
+      "cost": 0.36733320280000004
+    },
+    "thisWeek": {
+      "value": 26.471657752,
+      "cost": 5.294331550400001
+    },
+    "thisMonth": {
+      "value": 30.988322715000002,
+      "cost": 6.197664543
+    },
+    "thisYear": {
+      "value": 228.684921814,
+      "cost": 45.7369843628
+    }
+  },
+  "electricityIn": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisWeek": {
+      "value": 16.67832791,
+      "cost": 3.3356655820000003
+    },
+    "thisMonth": {
+      "value": 16.67832791,
+      "cost": 3.3356655820000003
+    },
+    "thisYear": {
+      "value": 133.376623348,
+      "cost": 26.675324669600002
+    }
+  },
+  "electricityInLow": {
+    "measurement": {
+      "time": "2020-08-09T11:27:13.000Z",
+      "rate": 156.66666666666669,
+      "value": 0.0,
+      "costPerHour": 0.03133333333333334,
+      "counterValue": 95.20666666660068
+    },
+    "thisDay": {
+      "value": 1.8366660140000002,
+      "cost": 0.36733320280000004
+    },
+    "thisWeek": {
+      "value": 9.793329842,
+      "cost": 1.9586659684
+    },
+    "thisMonth": {
+      "value": 14.309994805,
+      "cost": 2.8619989610000003
+    },
+    "thisYear": {
+      "value": 95.30829846600001,
+      "cost": 19.061659693200003
+    }
+  },
+  "electricityOut": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisWeek": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisMonth": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisYear": {
+      "value": 0.0,
+      "cost": 0.0
+    }
+  },
+  "electricityOutLow": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisWeek": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisMonth": {
+      "value": 0.0,
+      "cost": 0.0
+    },
+    "thisYear": {
+      "value": 0.0,
+      "cost": 0.0
+    }
+  },
+  "electricityExpected": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 1.445006991147546,
+      "cost": 0.2890013982295092
+    },
+    "thisWeek": {
+      "value": 22.100744696065647,
+      "cost": 4.42014893921313
+    },
+    "thisMonth": {
+      "value": 28.985990597705012,
+      "cost": 5.797198119541003
+    },
+    "thisYear": {
+      "value": 762.2646791222953,
+      "cost": 152.45293582445908
+    }
+  },
+  "electricityGoal": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 1.3005062920327917,
+      "cost": 0.26010125840655834
+    },
+    "thisWeek": {
+      "value": 19.890670226459083,
+      "cost": 3.978134045291817
+    },
+    "thisMonth": {
+      "value": 26.087391537934508,
+      "cost": 5.217478307586902
+    },
+    "thisYear": {
+      "value": 686.0382112100658,
+      "cost": 137.20764224201318
+    }
+  },
+  "gas": {
+    "measurement": {
+      "time": "2020-08-09T11:27:11.000Z",
+      "rate": 0.0,
+      "value": 0.0,
+      "costPerHour": 0.0,
+      "counterValue": 11.359999999999802
+    },
+    "thisDay": {
+      "value": 0.27,
+      "cost": 0.162
+    },
+    "thisWeek": {
+      "value": 1.58,
+      "cost": 0.948
+    },
+    "thisMonth": {
+      "value": 1.81,
+      "cost": 1.086
+    },
+    "thisYear": {
+      "value": 11.360000000000001,
+      "cost": 6.816000000000001
+    }
+  },
+  "gasExpected": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 0.21362920602014052,
+      "cost": 0.12817752361208432
+    },
+    "thisWeek": {
+      "value": 2.4805106826009604,
+      "cost": 1.4883064095605762
+    },
+    "thisMonth": {
+      "value": 3.2238790956572085,
+      "cost": 1.934327457394325
+    },
+    "thisYear": {
+      "value": 538.102993747012,
+      "cost": 322.86179624820716
+    }
+  },
+  "gasGoal": {
+    "measurement": "None",
+    "thisDay": {
+      "value": 0.1922662854181265,
+      "cost": 0.11535977125087589
+    },
+    "thisWeek": {
+      "value": 2.2324596143408644,
+      "cost": 1.3394757686045187
+    },
+    "thisMonth": {
+      "value": 2.901491186091488,
+      "cost": 1.7408947116548927
+    },
+    "thisYear": {
+      "value": 484.2926943723108,
+      "cost": 290.57561662338645
+    }
+  }
+}
