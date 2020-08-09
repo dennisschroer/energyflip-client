@@ -87,12 +87,14 @@ class Huisbaasje:
             current_measurements = dict()
 
             for source_type, actual in actuals.items():
+                measurements = actual["measurements"]
+
                 current_measurements[source_type] = {
-                    "measurement": max(actual["measurements"], key=lambda item: item["time"]),
+                    "measurement": max(measurements, key=lambda item: item["time"]) if measurements else None,
                     "thisDay": actual["thisDay"],
                     "thisWeek": actual["thisWeek"],
                     "thisMonth": actual["thisMonth"],
-                    "thisYear": actual["thisYear"],
+                    "thisYear": actual["thisYear"]
                 }
 
             return current_measurements
