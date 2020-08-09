@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="huisbaasje-client",
-    version="0.0.2",
+    version="0.0.3",
     author="Dennis Schroer",
     author_email="dev@dennisschroer.nl",
     description="Client for Huisbaasje",
