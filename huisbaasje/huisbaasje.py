@@ -10,9 +10,17 @@ from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, Huis
 class Huisbaasje:
     """Client to connect with Huisbaasje"""
 
-    def __init__(self, username: str, password: str, request_timeout: int = 10, source_types=None):
-        if source_types is None:
-            source_types = DEFAULT_SOURCE_TYPES
+    def __init__(self,
+                 username: str,
+                 password: str,
+                 api_scheme: str = "https",
+                 api_host: str = API_HOST,
+                 api_port: int = 443,
+                 request_timeout: int = 10,
+                 source_types=DEFAULT_SOURCE_TYPES):
+        self.api_scheme = api_scheme
+        self.api_host = api_host
+        self.api_port = api_port
         self.request_timeout = request_timeout
         self.source_types = source_types
 
@@ -27,7 +35,7 @@ class Huisbaasje:
 
         If succesfull, the authentication is saved and is_authenticated() returns true
         """
-        url = URL.build(scheme="https", host=API_HOST, port=443, path=AUTHENTICATION_PATH)
+        url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=AUTHENTICATION_PATH)
         data = {"loginName": self._username, "password": self._password}
 
         return await self.request("POST", url, data=data, callback=self._handle_authenticate_response)
@@ -42,7 +50,7 @@ class Huisbaasje:
         if not self.is_authenticated():
             raise HuisbaasjeUnauthenticatedException("Authentication required")
 
-        url = URL.build(scheme="https", host=API_HOST, port=443, path=(SOURCES_PATH % self._user_id))
+        url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=(SOURCES_PATH % self._user_id))
 
         return await self.request("GET", url, callback=self._handle_sources_response)
 
@@ -60,7 +68,7 @@ class Huisbaasje:
         source_ids = self.get_source_ids()
 
         query = {"sources": ",".join(source_ids)}
-        url = URL.build(scheme="https", host=API_HOST, port=443, path=(ACTUALS_PATH % self._user_id), query=query)
+        url = URL.bild(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=(ACTUALS_PATH % self._user_id), query=query)
 
         return await self.request("GET", url, callback=self._handle_actuals_response)
 
@@ -114,13 +122,16 @@ class Huisbaasje:
                 async with aiohttp.ClientSession() as session:
                     async with session.request(method, url, json=data, headers=headers, ssl=True) as response:
                         status = response.status
-                        is_json = response.headers.get("Content-Type", "") == "application/json"
+                        is_json = "application/json" in response.headers.get("Content-Type", "")
 
                         if status == 401:
                             raise HuisbaasjeUnauthenticatedException(await response.text())
 
+                        if not is_json:
+                            raise HuisbaasjeException("Response is not json", await response.text())
+
                         if not is_json or (status // 100) in [4, 5]:
-                            raise HuisbaasjeException(response.status, await response.text())
+                            raise HuisbaasjeException("Response is not success", response.status, await response.text())
 
                         if callback is not None:
                             return await callback(response)

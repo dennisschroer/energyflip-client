@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "6"
+pytest-aiohttp = "*"
+pytest-asyncio = "*"
 
 [packages]
 aiohttp = "3.6"
