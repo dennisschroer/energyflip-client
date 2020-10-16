@@ -12,7 +12,7 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
             json = await request.json()
             assert json["loginName"] == "username"
             assert json["password"] == "password"
-            with open("responses/authentication.json") as file:
+            with open("tests/responses/authentication.json") as file:
                 return web.Response(
                     content_type="application/json",
                     headers={AUTH_TOKEN_HEADER: "token"},
@@ -21,7 +21,7 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
         async def sources(request: Request):
             assert request.headers[AUTH_TOKEN_HEADER] == "token"
-            with open("responses/sources.json") as file:
+            with open("tests/responses/sources.json") as file:
                 return web.Response(
                     content_type="application/json",
                     text=file.read()
@@ -31,7 +31,7 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
             assert request.headers[AUTH_TOKEN_HEADER] == "token"
             assert request.query["sources"] == "sourceId5,sourceId1,sourceId2,sourceId3,sourceId4," \
                                                "sourceId6,sourceId7,sourceId8,sourceId9,sourceId10"
-            with open("responses/actuals.json") as file:
+            with open("tests/responses/actuals.json") as file:
                 return web.Response(
                     content_type="application/json",
                     text=file.read()
