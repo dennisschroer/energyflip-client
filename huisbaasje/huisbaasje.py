@@ -68,7 +68,7 @@ class Huisbaasje:
         source_ids = self.get_source_ids()
 
         query = {"sources": ",".join(source_ids)}
-        url = URL.bild(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=(ACTUALS_PATH % self._user_id), query=query)
+        url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=(ACTUALS_PATH % self._user_id), query=query)
 
         return await self.request("GET", url, callback=self._handle_actuals_response)
 
