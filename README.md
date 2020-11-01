@@ -6,3 +6,7 @@ Huisbaasje is an app and measuring device to monitor the usage of electricity an
 
 [![Build Status](https://travis-ci.org/denniss17/huisbaasje-client.svg?branch=master)](https://travis-ci.org/denniss17/huisbaasje-client)
 [![Coverage Status](https://coveralls.io/repos/github/denniss17/huisbaasje-client/badge.svg?branch=master)](https://coveralls.io/github/denniss17/huisbaasje-client?branch=master)
+
+## Usage
+
+See the [example](examples/example.py) on how to use this library.
