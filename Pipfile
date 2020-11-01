@@ -9,6 +9,9 @@ pytest-aiohttp = "*"
 pytest-asyncio = "*"
 coverage = "*"
 coveralls = "*"
+setuptools = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 aiohttp = "3.6"

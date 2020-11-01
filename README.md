@@ -10,3 +10,29 @@ Huisbaasje is an app and measuring device to monitor the usage of electricity an
 ## Usage
 
 See the [example](examples/example.py) on how to use this library.
+
+## Development
+
+This project uses [pipenv](https://pypi.org/project/pipenv/) for dependency and environment management.
+
+Install dependencies using
+
+    pipenv install --dev
+    
+## Testing
+
+Run all tests using
+
+    pipenv run pytest
+    
+## Packaging
+
+Create a package using
+
+    python3 setup.py sdist bdist_wheel
+    
+This creates a package in `dist`
+
+Upload the package using
+
+    python3 -m twine upload dist/*

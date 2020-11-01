@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="huisbaasje-client",
-    version="0.0.4",
+    version="0.1.0",
     author="Dennis Schroer",
     author_email="dev@dennisschroer.nl",
     description="Client for Huisbaasje",
@@ -14,7 +14,11 @@ setuptools.setup(
     url="https://github.com/denniss17/huisbaasje-client",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3"
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Topic :: Home Automation"
     ],
     python_requires='>=3.6'
 )
