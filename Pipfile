@@ -14,7 +14,7 @@ wheel = "*"
 twine = "*"
 
 [packages]
-aiohttp = "3.6"
+aiohttp = "3.7.4"
 yarl = "1.5"
 
 [requires]
