@@ -10,12 +10,11 @@ async def main(username: str, password: str):
     # Authenticate the client by attempting to login
     # On success, the user id and authentication are set on the client
     await huisbaasje.authenticate()
-    print("User id: %s" % huisbaasje._user_id)
     print("Auth token: %s" % huisbaasje._auth_token)
 
     # In order to fetch the current energy consumption, we first need to know which sources we can use
     # to request the current energy consumption from. Sources are stored inside the client.
-    await huisbaasje.sources()
+    await huisbaasje.customer_overview()
     print("Sources: %s" % huisbaasje._sources)
 
     # Request all actual energy consumption rates of the sources which correspond to the configured

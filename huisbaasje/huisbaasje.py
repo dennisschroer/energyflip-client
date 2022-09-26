@@ -3,7 +3,8 @@ import aiohttp
 import async_timeout
 from yarl import URL
 
-from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, SOURCES_PATH, ACTUALS_PATH
+from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, SOURCES_PATH, ACTUALS_PATH, \
+    OAUTH_ACCESS_TOKEN, OAUTH_SCOPE, OAUTH_CLIENT_ID, CUSTOMER_OVERVIEW_PATH
 from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, HuisbaasjeUnauthenticatedException
 
 
@@ -36,13 +37,20 @@ class Huisbaasje:
         If succesfull, the authentication is saved and is_authenticated() returns true
         """
         url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=AUTHENTICATION_PATH)
-        data = {"grant_type": "password", "client_id": "b58efc0b", "username": self._username, "password": self._password, "scope": "role:enduser realm:aurum"}
+        # Oauth2 request, password grant type
+        data = {
+            "grant_type": "password",
+            "client_id": OAUTH_CLIENT_ID,
+            "username": self._username,
+            "password": self._password,
+            "scope": OAUTH_SCOPE
+        }
 
         return await self.request("POST", url, data=data, callback=self._handle_authenticate_response, send_as='urlencode')
 
     async def _handle_authenticate_response(self, response):
         json = await response.json()
-        self._auth_token = json["access_token"]
+        self._auth_token = json[OAUTH_ACCESS_TOKEN]
 
     async def sources(self):
         """Request the sources."""
@@ -61,6 +69,24 @@ class Huisbaasje:
         self._sources = dict()
         for source in json["data"]["customerSummary"]["sources"]:
             self._sources[source["type"]] = source["source"]
+
+    async def customer_overview(self):
+        """Request the customer overview."""
+        if not self.is_authenticated():
+            raise HuisbaasjeUnauthenticatedException("Authentication required")
+
+        url = URL.build(
+            scheme=self.api_scheme,
+            host=self.api_host,
+            port=self.api_port,
+            path=CUSTOMER_OVERVIEW_PATH
+        )
+
+        return await self.request("GET", url, callback=self._handle_customer_overview_response)
+
+    async def _handle_customer_overview_response(self, response):
+        json = await response.json()
+        print(json)
 
     async def actuals(self):
         """Request the actual values of the sources of the types configured in this instance (source_types)."""
@@ -112,12 +138,12 @@ class Huisbaasje:
             self.invalidate_authentication()
             raise exception
 
-    async def request(self, method: str, url: str, data: dict = None, callback=None, send_as="json"):
+    async def request(self, method: str, url: URL, data: dict = None, callback=None, send_as="json"):
         headers = {"Accept": "application/json"}
 
         # Insert authentication
         if self._auth_token is not None:
-            headers["Authorization"] = "Bearer " + self._auth_token
+            headers[AUTH_TOKEN_HEADER] = ("Bearer %s" % self._auth_token)
 
         try:
             with async_timeout.timeout(self.request_timeout):

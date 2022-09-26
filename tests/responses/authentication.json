@@ -1,5 +1,5 @@
 {
-    "access_token": "token",
+    "access_token": "12345678-abcd-abcd-abcd-1234567890ab",
     "expires_in": 86400,
     "refresh_token": "12345678-abcd-abcd-abcd-1234567890ab",
     "scope": "realm:aurum role:enduser",
