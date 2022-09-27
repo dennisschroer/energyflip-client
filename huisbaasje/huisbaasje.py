@@ -3,7 +3,7 @@ import aiohttp
 import async_timeout
 from yarl import URL
 
-from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, SOURCES_PATH, AUTH_TOKEN_HEADER, ACTUALS_PATH
+from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, SOURCES_PATH, ACTUALS_PATH
 from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, HuisbaasjeUnauthenticatedException
 
 
@@ -36,28 +36,30 @@ class Huisbaasje:
         If succesfull, the authentication is saved and is_authenticated() returns true
         """
         url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=AUTHENTICATION_PATH)
-        data = {"loginName": self._username, "password": self._password}
+        data = {"grant_type": "password", "client_id": "b58efc0b", "username": self._username, "password": self._password, "scope": "role:enduser realm:aurum"}
 
-        return await self.request("POST", url, data=data, callback=self._handle_authenticate_response)
+        return await self.request("POST", url, data=data, callback=self._handle_authenticate_response, send_as='urlencode')
 
     async def _handle_authenticate_response(self, response):
         json = await response.json()
-        self._auth_token = response.headers.get(AUTH_TOKEN_HEADER)
-        self._user_id = json["userId"]
+        self._auth_token = json["access_token"]
 
     async def sources(self):
         """Request the sources."""
         if not self.is_authenticated():
             raise HuisbaasjeUnauthenticatedException("Authentication required")
 
-        url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=(SOURCES_PATH % self._user_id))
+        url = URL.build(scheme=self.api_scheme, host=self.api_host, port=self.api_port, path=SOURCES_PATH)
 
         return await self.request("GET", url, callback=self._handle_sources_response)
 
     async def _handle_sources_response(self, response):
         json = await response.json()
+
+        self._user_id = json["data"]["customerSummary"]["sessionIdentifiers"]["customerId"]
+
         self._sources = dict()
-        for source in json["sources"]:
+        for source in json["data"]["customerSummary"]["sources"]:
             self._sources[source["type"]] = source["source"]
 
     async def actuals(self):
@@ -75,7 +77,7 @@ class Huisbaasje:
     async def _handle_actuals_response(self, response):
         json = await response.json()
         actuals = dict()
-        for actual in json["actuals"]:
+        for actual in json["data"]["actuals"]:
             actuals[actual["type"]] = actual
 
         return actuals
@@ -110,17 +112,21 @@ class Huisbaasje:
             self.invalidate_authentication()
             raise exception
 
-    async def request(self, method: str, url: str, data: dict = None, callback=None):
+    async def request(self, method: str, url: str, data: dict = None, callback=None, send_as="json"):
         headers = {"Accept": "application/json"}
 
         # Insert authentication
         if self._auth_token is not None:
-            headers[AUTH_TOKEN_HEADER] = self._auth_token
+            headers["Authorization"] = "Bearer " + self._auth_token
 
         try:
             with async_timeout.timeout(self.request_timeout):
                 async with aiohttp.ClientSession() as session:
-                    async with session.request(method, url, json=data, headers=headers, ssl=True) as response:
+                    if send_as == 'json':
+                        req = session.request(method, url, json=data, headers=headers, ssl=True)
+                    else:
+                        req = session.request(method, url, data=data, headers=headers, ssl=True)
+                    async with req as response:
                         status = response.status
                         is_json = "application/json" in response.headers.get("Content-Type", "")
 
@@ -145,7 +151,7 @@ class Huisbaasje:
         """Returns whether this instance is authenticated
 
         Note: despite this method returning true, requests could still fail to an authentication error."""
-        return self._user_id is not None and self._auth_token is not None
+        return self._auth_token is not None
 
     def get_user_id(self):
         """Returns the unique id of the currently authenticated user"""

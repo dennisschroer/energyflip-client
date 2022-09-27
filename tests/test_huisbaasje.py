@@ -3,24 +3,26 @@ from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, TestServer
 from aiohttp.web_request import Request
 
 from huisbaasje import Huisbaasje
-from huisbaasje.const import AUTH_TOKEN_HEADER
 
 
 class HuisbaasjeTestCase(AioHTTPTestCase):
     async def get_application(self):
         async def authenticate(request: Request):
-            json = await request.json()
-            assert json["loginName"] == "username"
-            assert json["password"] == "password"
+            data = await request.post()
+            assert data["username"] == "username"
+            assert data["password"] == "password"
+            assert data["grant_type"] == "password"
+            assert data["client_id"] == "b58efc0b"
+            assert data["scope"] == "role:enduser realm:aurum"
             with open("tests/responses/authentication.json") as file:
                 return web.Response(
                     content_type="application/json",
-                    headers={AUTH_TOKEN_HEADER: "token"},
+                    headers={"Authorization": "Bearer token"},
                     text=file.read()
                 )
 
         async def sources(request: Request):
-            assert request.headers[AUTH_TOKEN_HEADER] == "token"
+            assert request.headers["Authorization"] == "Bearer token"
             with open("tests/responses/sources.json") as file:
                 return web.Response(
                     content_type="application/json",
@@ -28,7 +30,7 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
                 )
 
         async def actuals(request: Request):
-            assert request.headers[AUTH_TOKEN_HEADER] == "token"
+            assert request.headers["Authorization"] == "Bearer token"
             assert request.query["sources"] == "sourceId5,sourceId1,sourceId2,sourceId3,sourceId4," \
                                                "sourceId6,sourceId7,sourceId8,sourceId9,sourceId10"
             with open("tests/responses/actuals.json") as file:
@@ -38,9 +40,9 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
                 )
 
         app = web.Application()
-        app.router.add_post('/user/v2/authentication', authenticate)
-        app.router.add_get('/user/v2/users/1234/sources', sources)
-        app.router.add_get('/user/v2/users/1234/actuals', actuals)
+        app.router.add_post('/oauth2/v1/token', authenticate)
+        app.router.add_get('/user/v3/customers/overview', sources)
+        app.router.add_get('/user/v3/customers/1234/actuals', actuals)
         return app
 
     @unittest_run_loop
@@ -50,7 +52,6 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
         await huisbaasje.authenticate()
 
         assert huisbaasje.is_authenticated()
-        assert huisbaasje.get_user_id() == "1234"
         assert huisbaasje._auth_token == "token"
 
     @unittest_run_loop
@@ -60,6 +61,7 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
         await huisbaasje.authenticate()
         await huisbaasje.sources()
 
+        assert huisbaasje.get_user_id() == "1234"
         assert huisbaasje.get_source_ids() == [
             "sourceId5",
             "sourceId1",

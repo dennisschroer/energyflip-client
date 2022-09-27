@@ -1,8 +1,8 @@
 """Huisbaasje constants"""
 
-API_HOST = "mijnaurum.nl"
+API_HOST = "api.aurumeurope.com"
 
-AUTHENTICATION_PATH = "/user/v2/authentication"
+AUTHENTICATION_PATH = "/oauth2/v1/token"
 """Path to perform authentication. Result is a user id and an auth token"""
 
 SOURCE_TYPE_ELECTRICITY = "electricity"
@@ -28,11 +28,8 @@ DEFAULT_SOURCE_TYPES = [SOURCE_TYPE_ELECTRICITY,
                         SOURCE_TYPE_GAS_GOAL]
 """Default source types to fetch if none are specified."""
 
-SOURCES_PATH = "/user/v2/users/%s/sources"
+SOURCES_PATH = "/user/v3/customers/overview"
 """Path to request sources. Should be formatted with user id."""
 
-ACTUALS_PATH = "/user/v2/users/%s/actuals"
+ACTUALS_PATH = "/user/v3/customers/%s/actuals"
 """Path to request actual values. Should be formatted with user id."""
-
-AUTH_TOKEN_HEADER = "Auth-Token"
-"""Header which contains (in response) or should contain (in request) the authentication token"""
