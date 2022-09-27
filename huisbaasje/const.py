@@ -29,7 +29,7 @@ DEFAULT_SOURCE_TYPES = [SOURCE_TYPE_ELECTRICITY,
 """Default source types to fetch if none are specified."""
 
 SOURCES_PATH = "/user/v3/customers/overview"
-"""Path to request sources. Should be formatted with user id."""
+"""Path to request user id and sources."""
 
 ACTUALS_PATH = "/user/v3/customers/%s/actuals"
 """Path to request actual values. Should be formatted with user id."""
