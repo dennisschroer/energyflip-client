@@ -63,15 +63,6 @@ class Huisbaasje:
         json = await response.json()
         self._auth_token = json[OAUTH_ACCESS_TOKEN]
 
-    async def _handle_sources_response(self, response):
-        json = await response.json()
-
-        self._customer_id = json["data"]["customerSummary"]["sessionIdentifiers"]["customerId"]
-
-        self._sources = dict()
-        for source in json["data"]["customerSummary"]["sources"]:
-            self._sources[source["type"]] = source["source"]
-
     async def customer_overview(self):
         """Request the customer overview."""
         if not self.is_authenticated():
