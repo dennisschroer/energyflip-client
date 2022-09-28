@@ -1,16 +1,11 @@
 name: Test huisbaasje-client
-on:
-  push:
-  pull_request:
-    types:
-      - opened
-      - reopened
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ "3.7", "3.8", "3.9", "3.10" ]
+        python-version: [ "3.8", "3.9", "3.10" ]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,6 +21,7 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run coverage run --source=huisbaasje -m pytest
-      - name: Collect coverate
-        run: |
-          coveralls
+      - name: Collect coverage
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
