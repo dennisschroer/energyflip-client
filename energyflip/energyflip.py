@@ -5,11 +5,11 @@ from yarl import URL
 
 from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, ACTUALS_PATH, \
     OAUTH_ACCESS_TOKEN, OAUTH_SCOPE, OAUTH_CLIENT_ID, CUSTOMER_OVERVIEW_PATH, AUTH_TOKEN_HEADER
-from .exceptions import HuisbaasjeConnectionException, HuisbaasjeException, HuisbaasjeUnauthenticatedException
+from .exceptions import EnergyflipConnectionException, EnergyflipException, EnergyflipUnauthenticatedException
 
 
-class Huisbaasje:
-    """Client to connect with Huisbaasje"""
+class Energyflip:
+    """Client to connect with Energyflip"""
 
     def __init__(self,
                  username: str,
@@ -66,7 +66,7 @@ class Huisbaasje:
     async def customer_overview(self):
         """Request the customer overview."""
         if not self.is_authenticated():
-            raise HuisbaasjeUnauthenticatedException("Authentication required")
+            raise EnergyflipUnauthenticatedException("Authentication required")
 
         url = URL.build(
             scheme=self.api_scheme,
@@ -87,7 +87,7 @@ class Huisbaasje:
     async def actuals(self):
         """Request the actual values of the sources of the types configured in this instance (source_types)."""
         if not self.is_authenticated():
-            raise HuisbaasjeUnauthenticatedException("Authentication required")
+            raise EnergyflipUnauthenticatedException("Authentication required")
 
         source_ids = self.get_source_ids()
 
@@ -140,7 +140,7 @@ class Huisbaasje:
                 }
 
             return current_measurements
-        except HuisbaasjeUnauthenticatedException as exception:
+        except EnergyflipUnauthenticatedException as exception:
             self.invalidate_authentication()
             raise exception
 
@@ -160,21 +160,21 @@ class Huisbaasje:
                         is_json = "application/json" in response.headers.get("Content-Type", "")
 
                         if status == 401:
-                            raise HuisbaasjeUnauthenticatedException(await response.text())
+                            raise EnergyflipUnauthenticatedException(await response.text())
 
                         if not is_json:
-                            raise HuisbaasjeException("Response is not json", await response.text())
+                            raise EnergyflipException("Response is not json", await response.text())
 
                         if not is_json or (status // 100) in [4, 5]:
-                            raise HuisbaasjeException("Response is not success", response.status, await response.text())
+                            raise EnergyflipException("Response is not success", response.status, await response.text())
 
                         if callback is not None:
                             return await callback(response)
 
         except asyncio.TimeoutError as exception:
-            raise HuisbaasjeConnectionException("Timeout occurred while communicating with Huisbaasje") from exception
+            raise EnergyflipConnectionException("Timeout occurred while communicating with Energyflip") from exception
         except aiohttp.ClientError as exception:
-            raise HuisbaasjeConnectionException("Error occurred while communicating with Huisbaasje") from exception
+            raise EnergyflipConnectionException("Error occurred while communicating with Energyflip") from exception
 
     def is_authenticated(self):
         """Returns whether this instance is authenticated

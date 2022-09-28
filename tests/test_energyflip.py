@@ -2,10 +2,10 @@ from aiohttp import web
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, TestServer
 from aiohttp.web_request import Request
 
-from huisbaasje import Huisbaasje
+from energyflip import Energyflip
 
 
-class HuisbaasjeTestCase(AioHTTPTestCase):
+class EnergyflipTestCase(AioHTTPTestCase):
     async def get_application(self):
         async def authenticate(request: Request):
             data = await request.post()
@@ -54,32 +54,32 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
     @unittest_run_loop
     async def test_authenticate_success(self):
-        huisbaasje = Huisbaasje(
+        energyflip = Energyflip(
             "username",
             "password",
             api_scheme="http",
             api_host="localhost",
             api_port=self.server.port
         )
-        await huisbaasje.authenticate()
+        await energyflip.authenticate()
 
-        assert huisbaasje.is_authenticated()
-        assert huisbaasje._auth_token == "acc35500-abcd-abcd-abcd-1234567890ab"
+        assert energyflip.is_authenticated()
+        assert energyflip._auth_token == "acc35500-abcd-abcd-abcd-1234567890ab"
 
     @unittest_run_loop
     async def test_customer_overview(self):
-        huisbaasje = Huisbaasje(
+        energyflip = Energyflip(
             "username",
             "password",
             api_scheme="http",
             api_host="localhost",
             api_port=self.server.port
         )
-        await huisbaasje.authenticate()
-        await huisbaasje.customer_overview()
+        await energyflip.authenticate()
+        await energyflip.customer_overview()
 
-        assert huisbaasje.get_user_id() == "12345678-abcd-abcd-abcd-1234567890ab"
-        assert huisbaasje.get_source_ids() == [
+        assert energyflip.get_user_id() == "12345678-abcd-abcd-abcd-1234567890ab"
+        assert energyflip.get_source_ids() == [
             "00000000-0000-0000-0000-000000000005",
             "00000000-0000-0000-0000-000000000001",
             "00000000-0000-0000-0000-000000000002",
@@ -97,16 +97,16 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
     @unittest_run_loop
     async def test_actuals(self):
-        huisbaasje = Huisbaasje(
+        energyflip = Energyflip(
             "username",
             "password",
             api_scheme="http",
             api_host="localhost",
             api_port=self.server.port
         )
-        await huisbaasje.authenticate()
-        await huisbaasje.customer_overview()
-        actuals = await huisbaasje.actuals()
+        await energyflip.authenticate()
+        await energyflip.customer_overview()
+        actuals = await energyflip.actuals()
 
         assert len(actuals) == 10
         assert "electricity" in actuals
@@ -127,14 +127,14 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
     @unittest_run_loop
     async def test_current_measurements(self):
-        huisbaasje = Huisbaasje(
+        energyflip = Energyflip(
             "username",
             "password",
             api_scheme="http",
             api_host="localhost",
             api_port=self.server.port
         )
-        current_measurements = await huisbaasje.current_measurements()
+        current_measurements = await energyflip.current_measurements()
 
         assert len(current_measurements) == 10
         assert "electricity" in current_measurements
