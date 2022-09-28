@@ -10,12 +10,14 @@ async def main(username: str, password: str):
     # Authenticate the client by attempting to login
     # On success, the user id and authentication are set on the client
     await huisbaasje.authenticate()
-    print("User id: %s" % huisbaasje._user_id)
     print("Auth token: %s" % huisbaasje._auth_token)
 
-    # In order to fetch the current energy consumption, we first need to know which sources we can use
-    # to request the current energy consumption from. Sources are stored inside the client.
-    await huisbaasje.sources()
+    # In order to fetch the current energy consumption,
+    # we first need to know the id of the customer and
+    # the sources we can request the current energy consumption of.
+    # Both the customer id and sources are stored inside the client.
+    await huisbaasje.customer_overview()
+    print("Customer ID: %s" % huisbaasje._customer_id)
     print("Sources: %s" % huisbaasje._sources)
 
     # Request all actual energy consumption rates of the sources which correspond to the configured
@@ -30,6 +32,12 @@ async def main(username: str, password: str):
 
     # Manually logout the client.
     huisbaasje.invalidate_authentication()
+
+    # The API for some reason has a protection that you cannot re-use the existing session to fetch the actuals.
+    # All other requests are successful, but the server returns the following error when fetching the actual values:
+    # "The request was a legal request, but the server is refusing to respond to it."
+    # In order to make this example work, we start with a new client.
+    huisbaasje = Huisbaasje(username, password)
 
     # When authenticated (or when authentication is invalid),
     # current_measurements() will automatically try to reauthenticate.
