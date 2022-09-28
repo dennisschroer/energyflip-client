@@ -17,22 +17,29 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
             with open("tests/responses/authentication.json") as file:
                 return web.Response(
                     content_type="application/json",
-                    headers={"Authorization": "Bearer token"},
                     text=file.read()
                 )
 
-        async def sources(request: Request):
-            assert request.headers["Authorization"] == "Bearer token"
-            with open("tests/responses/sources.json") as file:
+        async def customer_overview(request: Request):
+            assert request.headers["Authorization"] == "Bearer acc35500-abcd-abcd-abcd-1234567890ab"
+            with open("tests/responses/customer_overview.json") as file:
                 return web.Response(
                     content_type="application/json",
                     text=file.read()
                 )
 
         async def actuals(request: Request):
-            assert request.headers["Authorization"] == "Bearer token"
-            assert request.query["sources"] == "sourceId5,sourceId1,sourceId2,sourceId3,sourceId4," \
-                                               "sourceId6,sourceId7,sourceId8,sourceId9,sourceId10"
+            assert request.headers["Authorization"] == "Bearer acc35500-abcd-abcd-abcd-1234567890ab"
+            assert request.query["sources"] == "00000000-0000-0000-0000-000000000005," \
+                                               "00000000-0000-0000-0000-000000000001," \
+                                               "00000000-0000-0000-0000-000000000002," \
+                                               "00000000-0000-0000-0000-000000000003," \
+                                               "00000000-0000-0000-0000-000000000004," \
+                                               "00000000-0000-0000-0000-000000000006," \
+                                               "00000000-0000-0000-0000-000000000007," \
+                                               "00000000-0000-0000-0000-000000000008," \
+                                               "00000000-0000-0000-0000-000000000009," \
+                                               "00000000-0000-0000-0000-000000000010"
             with open("tests/responses/actuals.json") as file:
                 return web.Response(
                     content_type="application/json",
@@ -41,46 +48,64 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
         app = web.Application()
         app.router.add_post('/oauth2/v1/token', authenticate)
-        app.router.add_get('/user/v3/customers/overview', sources)
-        app.router.add_get('/user/v3/customers/1234/actuals', actuals)
+        app.router.add_get('/user/v3/customers/overview', customer_overview)
+        app.router.add_get('/user/v3/customers/12345678-abcd-abcd-abcd-1234567890ab/actuals', actuals)
         return app
 
     @unittest_run_loop
     async def test_authenticate_success(self):
-        huisbaasje = Huisbaasje("username", "password", api_scheme="http", api_host="localhost",
-                                api_port=self.server.port)
+        huisbaasje = Huisbaasje(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
         await huisbaasje.authenticate()
 
         assert huisbaasje.is_authenticated()
-        assert huisbaasje._auth_token == "token"
+        assert huisbaasje._auth_token == "acc35500-abcd-abcd-abcd-1234567890ab"
 
     @unittest_run_loop
-    async def test_sources(self):
-        huisbaasje = Huisbaasje("username", "password", api_scheme="http", api_host="localhost",
-                                api_port=self.server.port)
+    async def test_customer_overview(self):
+        huisbaasje = Huisbaasje(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
         await huisbaasje.authenticate()
-        await huisbaasje.sources()
+        await huisbaasje.customer_overview()
 
-        assert huisbaasje.get_user_id() == "1234"
+        assert huisbaasje.get_user_id() == "12345678-abcd-abcd-abcd-1234567890ab"
         assert huisbaasje.get_source_ids() == [
-            "sourceId5",
-            "sourceId1",
-            "sourceId2",
-            "sourceId3",
-            "sourceId4",
-            "sourceId6",
-            "sourceId7",
-            "sourceId8",
-            "sourceId9",
-            "sourceId10"
+            "00000000-0000-0000-0000-000000000005",
+            "00000000-0000-0000-0000-000000000001",
+            "00000000-0000-0000-0000-000000000002",
+            "00000000-0000-0000-0000-000000000003",
+            "00000000-0000-0000-0000-000000000004",
+            "00000000-0000-0000-0000-000000000006",
+            "00000000-0000-0000-0000-000000000007",
+            "00000000-0000-0000-0000-000000000008",
+            "00000000-0000-0000-0000-000000000009",
+            "00000000-0000-0000-0000-000000000010"
+            # Source ids only contain ids of supported types,
+            # so sources "00000000-0000-0000-0000-000000000011" and "00000000-0000-0000-0000-000000000012"
+            # are not in this list
         ]
 
     @unittest_run_loop
     async def test_actuals(self):
-        huisbaasje = Huisbaasje("username", "password", api_scheme="http", api_host="localhost",
-                                api_port=self.server.port)
+        huisbaasje = Huisbaasje(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
         await huisbaasje.authenticate()
-        await huisbaasje.sources()
+        await huisbaasje.customer_overview()
         actuals = await huisbaasje.actuals()
 
         assert len(actuals) == 10
@@ -102,8 +127,13 @@ class HuisbaasjeTestCase(AioHTTPTestCase):
 
     @unittest_run_loop
     async def test_current_measurements(self):
-        huisbaasje = Huisbaasje("username", "password", api_scheme="http", api_host="localhost",
-                                api_port=self.server.port)
+        huisbaasje = Huisbaasje(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
         current_measurements = await huisbaasje.current_measurements()
 
         assert len(current_measurements) == 10

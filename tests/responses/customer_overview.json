@@ -47,11 +47,12 @@
           "serialNumber": "0000000"
         }
       ],
-      "initialInstallationDate": "2022-07-01T00:00:00.000",
-      "initialMeasurementsDate": "2020-07-01",
+      "initialInstallationDate": "2022-01-01T00:00:00.000",
+      "initialMeasurementsDate": "2022-01-01",
       "locations": [
         {
-          "buildingType": "unknown",
+          "buildingType": "buildingType",
+          "city": "city",
           "countryCode": "NL",
           "energyLabelInfo": {
             "energyLabel": "a",
@@ -59,12 +60,19 @@
             "recordingDate": "2022-07-01",
             "validUntil": "2032-07-01"
           },
-          "houseNumber": 1000,
-          "houseType": "rowHouse",
-          "latitude": 52.000000,
-          "locationId": "00000000-0000-0000-0000-000000000007",
-          "longitude": 6.000000,
+          "houseNumber": 1,
+          "houseType": "houseType",
+          "latitude": 0,
+          "locationId": "12345678-abcd-abcd-abcd-1234567890ab",
+          "longitude": 0,
           "meters": [
+            {
+              "analog": false,
+              "deviceId": "12345678-abcd-abcd-abcd-1234567890ab",
+              "meterId": "12345678-abcd-abcd-abcd-1234567890ab",
+              "meterType": "electricity",
+              "smart": true
+            },
             {
               "analog": "True",
               "cfactor": 100.0,
@@ -82,148 +90,149 @@
               "smart": "False"
             }
           ],
-          "numberOfResidents": 1000,
-          "numberOfSolarPanels": 1000,
-          "postalCode": "1234AA",
+          "numberOfResidents": 1,
+          "numberOfSolarPanels": 0,
+          "postalCode": "1234AB",
+          "street": "street",
           "yearBuilt": 2000
         }
       ],
-      "profileComplete": "False",
-      "registrationDate": "2022-07-01T00:00:00.000",
+      "profileComplete": true,
+      "registrationDate": "2022-01-01T00:00:00.000",
       "sessionIdentifiers": {
-        "customerId": "00000000-0000-0000-0000-000000000000",
-        "userId": "00000000-0000-0000-0000-000000000000"
+        "customerId": "12345678-abcd-abcd-abcd-1234567890ab",
+        "userId": "87654321-abcd-abcd-abcd-ab0987654321"
       },
       "sources": [
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000001",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityIn",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000002",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityInLow",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000003",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityOut",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000004",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityOutLow",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000005",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricity",
           "unit": "kWh",
           "rateUnit": "W",
           "savingTarget": 20.0,
-          "isDefault": "True",
+          "isDefault": true,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000006",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityExpected",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "isExpectedFor": "00000000-0000-0000-0000-000000000000",
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000007",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "electricityGoal",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "isGoalFor": "00000000-0000-0000-0000-000000000000",
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000008",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "gas",
           "unit": "m3",
           "rateUnit": "m3/h",
           "savingTarget": 20.0,
-          "isDefault": "True",
+          "isDefault": true,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000009",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "gasExpected",
           "unit": "m3",
           "rateUnit": "m3/h",
-          "isDefault": "False",
+          "isDefault": false,
           "isExpectedFor": "00000000-0000-0000-0000-000000000000",
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000010",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "gasGoal",
           "unit": "m3",
           "rateUnit": "m3/h",
-          "isDefault": "False",
+          "isDefault": false,
           "isGoalFor": "00000000-0000-0000-0000-000000000000",
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000011",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "other",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         },
         {
-          "source": "00000000-0000-0000-0000-000000000000",
+          "source": "00000000-0000-0000-0000-000000000012",
           "locationId": "00000000-0000-0000-0000-000000000000",
           "type": "other",
           "unit": "kWh",
           "rateUnit": "W",
-          "isDefault": "False",
+          "isDefault": false,
           "meterId": "00000000-0000-0000-0000-000000000000"
         }
       ],
       "terms": [
         {
           "id": "generic-terms-and-agreement",
-          "isRequired": "True",
-          "isSigned": "True",
+          "isRequired": true,
+          "isSigned": true,
           "majorVersion": 1,
           "minorVersion": 0,
           "publicUrl": "https://www.energyflip.com/nl/algemene-voorwaarden/",
           "title": "Aurum voorwaarden v1.0"
         },
         {
-          "id": "00000000-0000-0000-0000-000000000000",
-          "isRequired": "True",
-          "isSigned": "True",
+          "id": "01091f58-ab62-42d7-bf13-8b42739cca16",
+          "isRequired": true,
+          "isSigned": true,
           "majorVersion": 1,
           "minorVersion": 0,
           "publicUrl": "https://www.energyflip.com/nl/privacy-statement/",
@@ -232,9 +241,10 @@
       ],
       "user": {
         "email": "email@example.com",
-        "firstName": "First",
-        "lastName": "Last",
-        "telephoneNumber": "0612345678"
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "preferredLanguage": "nl",
+        "telephoneNumber": "0612341234"
       }
     }
   },
@@ -242,5 +252,5 @@
     "srv4.aurumeurope.com"
   ],
   "status": 0,
-  "timestamp": "2022-07-01T00:00:00.000Z"
+  "timestamp": "2022-01-01T00:00:00.000Z"
 }
