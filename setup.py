@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="huisbaasje-client",
+    name="energyflip-client",
     version="0.2.0",
     author="Dennis Schroer",
     author_email="dev@dennisschroer.nl",
-    description="Client for Huisbaasje",
+    description="Client for EnergyFlip",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/denniss17/huisbaasje-client",
+    url="https://github.com/denniss17/energyflip-client",
     packages=setuptools.find_packages(),
     classifiers=[
         "Intended Audience :: Developers",

@@ -1,4 +1,4 @@
-"""Huisbaasje constants"""
+"""EnergyFlip constants"""
 
 API_HOST = "api.aurumeurope.com"
 

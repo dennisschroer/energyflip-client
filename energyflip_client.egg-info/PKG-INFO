@@ -1,3 +1,19 @@
+Metadata-Version: 2.1
+Name: energyflip-client
+Version: 0.2.0
+Summary: Client for EnergyFlip
+Home-page: https://github.com/denniss17/energyflip-client
+Author: Dennis Schroer
+Author-email: dev@dennisschroer.nl
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Home Automation
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # EnergyFlip client
 
 Client to communicate with the API behind [EnergyFlip](https://www.energyflip.com/).
