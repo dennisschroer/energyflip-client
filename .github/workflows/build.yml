@@ -24,4 +24,5 @@ jobs:
       - name: Collect coverage
         uses: coverallsapp/github-action@master
         with:
+          path-to-lcov: .coverage
           github-token: ${{ secrets.GITHUB_TOKEN }}
