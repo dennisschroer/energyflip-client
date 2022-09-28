@@ -1,111 +1,184 @@
 {
-  "sources": [
-    {
-      "source": "sourceId1",
-      "locationId": "locationId",
-      "type": "electricityIn",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId2",
-      "locationId": "locationId",
-      "type": "electricityInLow",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId3",
-      "locationId": "locationId",
-      "type": "electricityOut",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId4",
-      "locationId": "locationId",
-      "type": "electricityOutLow",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId5",
-      "locationId": "locationId",
-      "type": "electricity",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "savingTarget": 10.0,
-      "isDefault": true,
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId6",
-      "locationId": "locationId",
-      "type": "electricityExpected",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "isExpectedFor": "sourceId5",
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId7",
-      "locationId": "locationId",
-      "type": "electricityGoal",
-      "unit": "kWh",
-      "rateUnit": "W",
-      "isDefault": false,
-      "isGoalFor": "sourceId5",
-      "meterId": "meterIdElectricity"
-    },
-    {
-      "source": "sourceId8",
-      "locationId": "locationId",
-      "type": "gas",
-      "unit": "m3",
-      "rateUnit": "m3/h",
-      "savingTarget": 10.0,
-      "isDefault": true,
-      "meterId": "meterIdGas"
-    },
-    {
-      "source": "sourceId9",
-      "locationId": "locationId",
-      "type": "gasExpected",
-      "unit": "m3",
-      "rateUnit": "m3/h",
-      "isDefault": false,
-      "isExpectedFor": "sourceId8",
-      "meterId": "meterIdGas"
-    },
-    {
-      "source": "sourceId10",
-      "locationId": "locationId",
-      "type": "gasGoal",
-      "unit": "m3",
-      "rateUnit": "m3/h",
-      "isDefault": false,
-      "isGoalFor": "sourceId8",
-      "meterId": "meterIdGas"
-    }
+  "data":{
+     "customerSummary":{
+        "contracts":[
+           
+        ],
+        "devices":[
+           {
+              "deviceId":"12345678-abcd-abcd-abcd-1234567890ab",
+              "deviceType":"gateway",
+              "isStandAloneDevice":true,
+              "serialNumber":"1234567"
+           }
+        ],
+        "initialInstallationDate":"2022-01-01T00:00:00.000",
+        "initialMeasurementsDate":"2022-01-01",
+        "locations":[
+           {
+              "buildingType":"buildingType",
+              "city":"city",
+              "countryCode":"NL",
+              "energyLabelInfo":{
+                 "energyLabel":"unknown"
+              },
+              "houseNumber":1,
+              "houseType":"houseType",
+              "latitude":0,
+              "locationId":"12345678-abcd-abcd-abcd-1234567890ab",
+              "longitude":0,
+              "meters":[
+                 {
+                    "analog":false,
+                    "deviceId":"12345678-abcd-abcd-abcd-1234567890ab",
+                    "meterId":"12345678-abcd-abcd-abcd-1234567890ab",
+                    "meterType":"electricity",
+                    "smart":true
+                 }
+              ],
+              "numberOfResidents":1,
+              "numberOfSolarPanels":0,
+              "postalCode":"1234AB",
+              "street":"street",
+              "yearBuilt":2000
+           }
+        ],
+        "profileComplete":true,
+        "registrationDate":"2022-01-01T00:00:00.000",
+        "sessionIdentifiers":{
+           "customerId":"1234",
+           "userId":"12345678-abcd-abcd-abcd-1234567890ab"
+        },
+        "sources":[
+          {
+            "source": "sourceId1",
+            "locationId": "locationId",
+            "type": "electricityIn",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId2",
+            "locationId": "locationId",
+            "type": "electricityInLow",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId3",
+            "locationId": "locationId",
+            "type": "electricityOut",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId4",
+            "locationId": "locationId",
+            "type": "electricityOutLow",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId5",
+            "locationId": "locationId",
+            "type": "electricity",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "savingTarget": 10.0,
+            "isDefault": true,
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId6",
+            "locationId": "locationId",
+            "type": "electricityExpected",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "isExpectedFor": "sourceId5",
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId7",
+            "locationId": "locationId",
+            "type": "electricityGoal",
+            "unit": "kWh",
+            "rateUnit": "W",
+            "isDefault": false,
+            "isGoalFor": "sourceId5",
+            "meterId": "meterIdElectricity"
+          },
+          {
+            "source": "sourceId8",
+            "locationId": "locationId",
+            "type": "gas",
+            "unit": "m3",
+            "rateUnit": "m3/h",
+            "savingTarget": 10.0,
+            "isDefault": true,
+            "meterId": "meterIdGas"
+          },
+          {
+            "source": "sourceId9",
+            "locationId": "locationId",
+            "type": "gasExpected",
+            "unit": "m3",
+            "rateUnit": "m3/h",
+            "isDefault": false,
+            "isExpectedFor": "sourceId8",
+            "meterId": "meterIdGas"
+          },
+          {
+            "source": "sourceId10",
+            "locationId": "locationId",
+            "type": "gasGoal",
+            "unit": "m3",
+            "rateUnit": "m3/h",
+            "isDefault": false,
+            "isGoalFor": "sourceId8",
+            "meterId": "meterIdGas"
+          }
+        ],
+        "terms":[
+           {
+              "id":"generic-terms-and-agreement",
+              "isRequired":true,
+              "isSigned":true,
+              "majorVersion":1,
+              "minorVersion":0,
+              "publicUrl":"https://www.energyflip.com/nl/algemene-voorwaarden/",
+              "title":"Aurum voorwaarden v1.0"
+           },
+           {
+              "id":"01091f58-ab62-42d7-bf13-8b42739cca16",
+              "isRequired":true,
+              "isSigned":true,
+              "majorVersion":1,
+              "minorVersion":0,
+              "publicUrl":"https://www.energyflip.com/nl/privacy-statement/",
+              "title":"Privacy statement 13-02-2020"
+           }
+        ],
+        "user":{
+           "email":"mail@example.com",
+           "firstName":"firstName",
+           "lastName":"lastName",
+           "preferredLanguage":"nl",
+           "telephoneNumber":"0612341234"
+        }
+     }
+  },
+  "servers":[
+     "srv4.aurumeurope.com"
   ],
-  "serverAddresses": [
-    {
-      "serverAddress": "srv4.aurumeurope.com"
-    },
-    {
-      "serverAddress": "srv3.aurumeurope.com"
-    },
-    {
-      "serverAddress": "srv2.aurumeurope.com"
-    }
-  ]
+  "status":0,
+  "timestamp":"2022-01-01T00:00:00.000Z"
 }
