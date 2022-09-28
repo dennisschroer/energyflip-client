@@ -2,10 +2,10 @@ from aiohttp import web
 from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, TestServer
 from aiohttp.web_request import Request
 
-from energyflip import Energyflip
+from energyflip import EnergyFlip
 
 
-class EnergyflipTestCase(AioHTTPTestCase):
+class EnergyFlipTestCase(AioHTTPTestCase):
     async def get_application(self):
         async def authenticate(request: Request):
             data = await request.post()
@@ -52,9 +52,8 @@ class EnergyflipTestCase(AioHTTPTestCase):
         app.router.add_get('/user/v3/customers/12345678-abcd-abcd-abcd-1234567890ab/actuals', actuals)
         return app
 
-    @unittest_run_loop
     async def test_authenticate_success(self):
-        energyflip = Energyflip(
+        energyflip = EnergyFlip(
             "username",
             "password",
             api_scheme="http",
@@ -66,9 +65,8 @@ class EnergyflipTestCase(AioHTTPTestCase):
         assert energyflip.is_authenticated()
         assert energyflip._auth_token == "acc35500-abcd-abcd-abcd-1234567890ab"
 
-    @unittest_run_loop
     async def test_customer_overview(self):
-        energyflip = Energyflip(
+        energyflip = EnergyFlip(
             "username",
             "password",
             api_scheme="http",
@@ -95,9 +93,8 @@ class EnergyflipTestCase(AioHTTPTestCase):
             # are not in this list
         ]
 
-    @unittest_run_loop
     async def test_actuals(self):
-        energyflip = Energyflip(
+        energyflip = EnergyFlip(
             "username",
             "password",
             api_scheme="http",
@@ -125,9 +122,8 @@ class EnergyflipTestCase(AioHTTPTestCase):
         assert actuals["electricity"]["thisDay"]["value"] == 1.7883327720000002
         assert actuals["electricity"]["thisWeek"]["value"] == 3.931665413
 
-    @unittest_run_loop
     async def test_current_measurements(self):
-        energyflip = Energyflip(
+        energyflip = EnergyFlip(
             "username",
             "password",
             api_scheme="http",

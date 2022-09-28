@@ -5,11 +5,11 @@ from yarl import URL
 
 from .const import API_HOST, AUTHENTICATION_PATH, DEFAULT_SOURCE_TYPES, ACTUALS_PATH, \
     OAUTH_ACCESS_TOKEN, OAUTH_SCOPE, OAUTH_CLIENT_ID, CUSTOMER_OVERVIEW_PATH, AUTH_TOKEN_HEADER
-from .exceptions import EnergyflipConnectionException, EnergyflipException, EnergyflipUnauthenticatedException
+from .exceptions import EnergyFlipConnectionException, EnergyFlipException, EnergyFlipUnauthenticatedException
 
 
-class Energyflip:
-    """Client to connect with Energyflip"""
+class EnergyFlip:
+    """Client to connect with EnergyFlip"""
 
     def __init__(self,
                  username: str,
@@ -66,7 +66,7 @@ class Energyflip:
     async def customer_overview(self):
         """Request the customer overview."""
         if not self.is_authenticated():
-            raise EnergyflipUnauthenticatedException("Authentication required")
+            raise EnergyFlipUnauthenticatedException("Authentication required")
 
         url = URL.build(
             scheme=self.api_scheme,
@@ -87,7 +87,7 @@ class Energyflip:
     async def actuals(self):
         """Request the actual values of the sources of the types configured in this instance (source_types)."""
         if not self.is_authenticated():
-            raise EnergyflipUnauthenticatedException("Authentication required")
+            raise EnergyFlipUnauthenticatedException("Authentication required")
 
         source_ids = self.get_source_ids()
 
@@ -140,11 +140,11 @@ class Energyflip:
                 }
 
             return current_measurements
-        except EnergyflipUnauthenticatedException as exception:
+        except EnergyFlipUnauthenticatedException as exception:
             self.invalidate_authentication()
             raise exception
 
-    async def request(self, method: str, url: URL, data: dict = None, callback=None, send_as="json"):
+    async def request(self, method: str, url: URL, data: dict = None, callback=None):
         headers = {"Accept": "application/json"}
 
         # Insert authentication
@@ -152,7 +152,7 @@ class Energyflip:
             headers[AUTH_TOKEN_HEADER] = ("Bearer %s" % self._auth_token)
 
         try:
-            with async_timeout.timeout(self.request_timeout):
+            async with async_timeout.timeout(self.request_timeout):
                 async with aiohttp.ClientSession() as session:
                     req = session.request(method, url, data=data, headers=headers, ssl=True)
                     async with req as response:
@@ -160,21 +160,21 @@ class Energyflip:
                         is_json = "application/json" in response.headers.get("Content-Type", "")
 
                         if status == 401:
-                            raise EnergyflipUnauthenticatedException(await response.text())
+                            raise EnergyFlipUnauthenticatedException(await response.text())
 
                         if not is_json:
-                            raise EnergyflipException("Response is not json", await response.text())
+                            raise EnergyFlipException("Response is not json", await response.text())
 
                         if not is_json or (status // 100) in [4, 5]:
-                            raise EnergyflipException("Response is not success", response.status, await response.text())
+                            raise EnergyFlipException("Response is not success", response.status, await response.text())
 
                         if callback is not None:
                             return await callback(response)
 
         except asyncio.TimeoutError as exception:
-            raise EnergyflipConnectionException("Timeout occurred while communicating with Energyflip") from exception
+            raise EnergyFlipConnectionException("Timeout occurred while communicating with EnergyFlip") from exception
         except aiohttp.ClientError as exception:
-            raise EnergyflipConnectionException("Error occurred while communicating with Energyflip") from exception
+            raise EnergyFlipConnectionException("Error occurred while communicating with EnergyFlip") from exception
 
     def is_authenticated(self):
         """Returns whether this instance is authenticated

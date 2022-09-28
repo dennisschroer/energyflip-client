@@ -1,6 +1,6 @@
 from .energyflip import (
-    Energyflip,
-    EnergyflipException,
-    EnergyflipConnectionException,
-    EnergyflipUnauthenticatedException
+    EnergyFlip,
+    EnergyFlipException,
+    EnergyFlipConnectionException,
+    EnergyFlipUnauthenticatedException
 )

@@ -1,11 +1,11 @@
 import asyncio
 
-from energyflip.energyflip import Energyflip
+from energyflip.energyflip import EnergyFlip
 
 
 async def main(username: str, password: str):
     # Create a new client by supplying username and password
-    energyflip = Energyflip(username, password)
+    energyflip = EnergyFlip(username, password)
 
     # Authenticate the client by attempting to login
     # On success, the user id and authentication are set on the client
@@ -37,7 +37,7 @@ async def main(username: str, password: str):
     # All other requests are successful, but the server returns the following error when fetching the actual values:
     # "The request was a legal request, but the server is refusing to respond to it."
     # In order to make this example work, we start with a new client.
-    energyflip = Energyflip(username, password)
+    energyflip = EnergyFlip(username, password)
 
     # When authenticated (or when authentication is invalid),
     # current_measurements() will automatically try to reauthenticate.

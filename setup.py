@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.2.0",
     author="Dennis Schroer",
     author_email="dev@dennisschroer.nl",
-    description="Client for Energyflip",
+    description="Client for EnergyFlip",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/denniss17/energyflip-client",
