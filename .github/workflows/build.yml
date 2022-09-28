@@ -21,8 +21,9 @@ jobs:
       - name: Test with pytest
         run: |
           pipenv run coverage run --source=huisbaasje -m pytest
+          pipenv run coverage lcov
       - name: Collect coverage
         uses: coverallsapp/github-action@master
         with:
-          path-to-lcov: .coverage
+          path-to-lcov: coverage.lcov
           github-token: ${{ secrets.GITHUB_TOKEN }}
