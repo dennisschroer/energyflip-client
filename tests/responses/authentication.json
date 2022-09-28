@@ -1,1 +1,7 @@
-{"userId":"1234"}
+{
+    "access_token": "acc35500-abcd-abcd-abcd-1234567890ab",
+    "expires_in": 86400,
+    "refresh_token": "73f73540-abcd-abcd-abcd-1234567890ab",
+    "scope": "realm:aurum role:enduser",
+    "token_type": "Bearer"
+}
