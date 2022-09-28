@@ -5,4 +5,7 @@ ENV/
 build/
 dist/
 .coverage
+coverage.lcov
 __pycache__
+
+.idea
