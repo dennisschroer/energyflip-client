@@ -33,12 +33,6 @@ async def main(username: str, password: str):
     # Manually logout the client.
     energyflip.invalidate_authentication()
 
-    # The API for some reason has a protection that you cannot re-use the existing session to fetch the actuals.
-    # All other requests are successful, but the server returns the following error when fetching the actual values:
-    # "The request was a legal request, but the server is refusing to respond to it."
-    # In order to make this example work, we start with a new client.
-    energyflip = EnergyFlip(username, password)
-
     # When authenticated (or when authentication is invalid),
     # current_measurements() will automatically try to reauthenticate.
     current_measurements = await energyflip.current_measurements()
