@@ -36,6 +36,9 @@ class EnergyFlip:
 
         If succesfull, the authentication is saved and is_authenticated() returns true
         """
+        # Make sure all data is cleared
+        self.invalidate_authentication()
+
         url = URL.build(
             scheme=self.api_scheme,
             host=self.api_host,
@@ -187,8 +190,9 @@ class EnergyFlip:
         return self._customer_id
 
     def invalidate_authentication(self):
-        """Invalidate the current authentication tokens."""
+        """Invalidate the current authentication tokens and account details."""
         self._customer_id = None
+        self._sources = None
         self._auth_token = None
 
     def get_source_ids(self):
@@ -197,4 +201,4 @@ class EnergyFlip:
 
     def get_source_id(self, source_type):
         """Gets the id of the source which belongs to the given source type, if present."""
-        return self._sources[source_type] if source_type in self._sources else None
+        return self._sources[source_type] if self._sources is not None and source_type in self._sources else None
