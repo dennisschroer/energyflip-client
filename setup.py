@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="energyflip-client",
-    version="0.2.1",
+    version="0.2.2",
     author="Dennis Schroer",
     author_email="dev@dennisschroer.nl",
     description="Client for EnergyFlip",
