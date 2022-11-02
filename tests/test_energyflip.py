@@ -3,6 +3,7 @@ from aiohttp.test_utils import AioHTTPTestCase, unittest_run_loop, TestServer
 from aiohttp.web_request import Request
 
 from energyflip import EnergyFlip
+from energyflip.const import SOURCE_TYPE_ELECTRICITY, SOURCE_TYPE_GAS
 
 
 class EnergyFlipTestCase(AioHTTPTestCase):
@@ -52,6 +53,20 @@ class EnergyFlipTestCase(AioHTTPTestCase):
         app.router.add_get('/user/v3/customers/12345678-abcd-abcd-abcd-1234567890ab/actuals', actuals)
         return app
 
+    async def test_initial_state(self):
+        energyflip = EnergyFlip(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
+
+        assert energyflip.is_authenticated() is False
+        assert energyflip.get_user_id() is None
+        assert energyflip.get_source_ids() == []
+        assert energyflip.get_source_id(SOURCE_TYPE_ELECTRICITY) is None
+
     async def test_authenticate_success(self):
         energyflip = EnergyFlip(
             "username",
@@ -64,6 +79,22 @@ class EnergyFlipTestCase(AioHTTPTestCase):
 
         assert energyflip.is_authenticated()
         assert energyflip._auth_token == "acc35500-abcd-abcd-abcd-1234567890ab"
+
+    async def test_authenticate_resets_user_details(self):
+        energyflip = EnergyFlip(
+            "username",
+            "password",
+            api_scheme="http",
+            api_host="localhost",
+            api_port=self.server.port
+        )
+        await energyflip.authenticate()
+        await energyflip.customer_overview()
+        await energyflip.authenticate()
+
+        # User details should be reset
+        assert energyflip.get_user_id() is None
+        assert energyflip.get_source_ids() == []
 
     async def test_customer_overview(self):
         energyflip = EnergyFlip(
@@ -92,6 +123,8 @@ class EnergyFlipTestCase(AioHTTPTestCase):
             # so sources "00000000-0000-0000-0000-000000000011" and "00000000-0000-0000-0000-000000000012"
             # are not in this list
         ]
+        assert energyflip.get_source_id(SOURCE_TYPE_ELECTRICITY) == "00000000-0000-0000-0000-000000000005"
+        assert energyflip.get_source_id(SOURCE_TYPE_GAS) == "00000000-0000-0000-0000-000000000008"
 
     async def test_actuals(self):
         energyflip = EnergyFlip(
